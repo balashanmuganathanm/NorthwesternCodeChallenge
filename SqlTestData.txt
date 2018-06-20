@@ -1,0 +1,11 @@
+--Sample Insert
+INSERT INTO public.todo_list(
+            list_id, category, description, created_timestamp)
+    VALUES (1, 'work', 'mywork_list', current_timestamp);
+    
+INSERT INTO public.todo_item(
+            item_id, list_id, status, description, created_timestamp)
+    VALUES (1, 1, 'pending', 'myitem_1', current_timestamp);
+INSERT INTO public.todo_item(
+            item_id, list_id, status, description, created_timestamp)
+    VALUES (2, 1, 'completed', 'myitem_2', current_timestamp);

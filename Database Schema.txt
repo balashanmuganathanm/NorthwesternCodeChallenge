@@ -1,0 +1,42 @@
+-- DDL to create table and sequence object
+
+-- DROP TABLE public.todo_list
+
+CREATE TABLE public.todo_list(
+list_id bigint NOT NULL,
+category character varying(100)  NOT NULL,
+description character varying(1000)  NOT NULL,
+created_timestamp timestamp without time zone NOT NULL,
+last_updated_timestamp timestamp without time zone,
+CONSTRAINT list_id_1ix PRIMARY KEY(list_id)
+);
+
+-- DROP TABLE public.todo_item
+
+CREATE TABLE public.todo_item(
+item_id bigint NOT NULL,
+list_id bigint NOT NULL,
+status character varying(10)  NOT NULL,
+description character varying(1000)  NOT NULL,
+created_timestamp timestamp without time zone NOT NULL,
+last_updated_timestamp timestamp without time zone,
+CONSTRAINT item_id_1ix PRIMARY KEY(item_id),
+CONSTRAINT list_id_fkey FOREIGN KEY (list_id)
+    REFERENCES public.todo_list (list_id) ON DELETE CASCADE
+);
+
+-- DROP public.list_seq
+
+CREATE SEQUENCE public.list_seq
+ INCREMENT 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
+ START 1;
+
+-- DROP public.item_seq
+
+CREATE SEQUENCE public.item_seq
+ INCREMENT 1
+ MINVALUE 1
+ MAXVALUE 9223372036854775807
+ START 1;

@@ -1,0 +1,44 @@
+--Select query for get operation
+SELECT list.list_id,
+    list.category,
+    list.description,
+    list.created_timestamp,
+    list.last_updated_timestamp,
+    item.item_id,
+    item.status,
+    item.description,
+    item.created_timestamp,
+    item.last_updated_timestamp
+  FROM  public.todo_list list
+  JOIN  public.todo_item item
+    ON  list.list_id = item.list_id;
+
+--Insert query for createTodoList operation
+INSERT INTO public.todo_list(
+            list_id, category, description, created_timestamp)
+    VALUES (nextval('public.list_seq'), :category, :description, current_timestamp);
+    
+--Insert query for createTodoItem operation
+INSERT INTO public.todo_item(
+            item_id, list_id, status, description, created_timestamp)
+    VALUES (nextval('public.item_seq'), :listId, :status, :description, current_timestamp);
+
+--Update query for updateTodoList operation
+UPDATE public.todo_list 
+   SET category = :category,
+    description = :description,
+    last_updated_timestamp = current_timestamp
+ WHERE list_id = :listId;
+
+--Update query for updateTodoItem operation
+UPDATE public.todo_item
+   SET status = :status,
+    description = :description,
+    last_updated_timestamp = current_timestamp
+ WHERE item_id = :itemId;
+ 
+--Delete query for deleteTodoList operation
+DELETE FROM public.todo_list WHERE list_id = :listId;
+
+--Delete query for deleteTodoList operation
+DELETE FROM public.todo_item WHERE item_id = :itemId;
