@@ -1,14 +1,14 @@
 --Select query for get operation
-SELECT list.list_id,
-    list.category,
-    list.description,
-    list.created_timestamp,
-    list.last_updated_timestamp,
-    item.item_id,
-    item.status,
-    item.description,
-    item.created_timestamp,
-    item.last_updated_timestamp
+SELECT list.list_id AS listId,
+    list.category AS category,
+    list.description AS listDescription,
+    list.created_timestamp AS listCreatedTimestamp,
+    list.last_updated_timestamp AS listLastUpdatedTimestamp,
+    item.item_id AS itemId,
+    item.status AS status,
+    item.description AS itemDescription,
+    item.created_timestamp AS itemCreatedTimestamp,
+    item.last_updated_timestamp AS itemLastUpdatedTimestamp
   FROM  public.todo_list list
   JOIN  public.todo_item item
     ON  list.list_id = item.list_id;
@@ -16,12 +16,14 @@ SELECT list.list_id,
 --Insert query for createTodoList operation
 INSERT INTO public.todo_list(
             list_id, category, description, created_timestamp)
-    VALUES (nextval('public.list_seq'), :category, :description, current_timestamp);
+    VALUES (nextval('public.list_seq'), :category, :description, current_timestamp) 
+    RETURNING list_id AS listId;
     
 --Insert query for createTodoItem operation
 INSERT INTO public.todo_item(
             item_id, list_id, status, description, created_timestamp)
-    VALUES (nextval('public.item_seq'), :listId, :status, :description, current_timestamp);
+    VALUES (nextval('public.item_seq'), :listId, :status, :description, current_timestamp)
+    RETURNING item_id AS itemId;
 
 --Update query for updateTodoList operation
 UPDATE public.todo_list 
