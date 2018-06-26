@@ -1,0 +1,24 @@
+spring.jmx:
+   enabled: false
+
+spring.datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    
+server:
+  port: 8080
+
+security:
+  basic:
+    enabled: false
+
+management:
+  port: 8081
+  security:
+    enabled: false 
+    
+
+
+
