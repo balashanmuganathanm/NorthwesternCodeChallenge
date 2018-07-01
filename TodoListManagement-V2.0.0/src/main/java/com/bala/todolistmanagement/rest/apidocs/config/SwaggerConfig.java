@@ -32,7 +32,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                  .title("Todo List Management REST API")
                  .description("\"REST API for Todo List Management service\"")
                  .version("2.0.0")
-                 .contact(new Contact("Bala Mariappan", "Java and Mainframe Technical Lead" ,"mbalashanmuganathan@gmail.com"))
+                 .contact(new Contact("Bala Mariappan", "http://www.bala-mariappan.com/contact" ,"mbalashanmuganathan@gmail.com"))
                  .build();
      }
     
